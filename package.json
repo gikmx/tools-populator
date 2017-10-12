@@ -1,6 +1,6 @@
 {
     "name": "@gik/tools-populator",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Allows you to easily populate an object using its own keys",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/tools",
@@ -46,6 +46,9 @@
         "prepublishOnly": "npm run docs -s"
     },
     "dependencies": {
+        "@gik/tools-checker": "0.0.7",
+        "@gik/tools-mapper": "0.0.3",
+        "@gik/tools-thrower": "^0.1.7"
     },
     "devDependencies": {
         "@gik/eslint-config": "0.0.3",
