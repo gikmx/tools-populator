@@ -2,7 +2,7 @@
 /**
  * The provided `subject` to the Populator is not the expected type.
  * @typedef {Error}
- * @memberof Tools.__types
+ * @memberof Types
  */
 export const PupulatorParamError = {
     name: 'PupulatorParamError',
@@ -12,7 +12,7 @@ export const PupulatorParamError = {
 /**
  * The provided key cannot be used to populate the current property.
  * @typedef {Error}
- * @memberof Tools.__types
+ * @memberof Types
  */
 export const PopulatorKeyError = {
     name: 'PopulatorKeyError',
@@ -22,17 +22,13 @@ export const PopulatorKeyError = {
 /**
  * The provided key cannot be used because is not a valid type.
  * @typedef {Error}
- * @memberof Tools.__types
+ * @memberof Types
  */
 export const PopulatorKeyTypeError = {
     name: 'PopulatorKeyTypeError',
     message: 'The key "%s" cannot be used on «%s». Expecting {string|number}, got "%s"',
 };
 
-/**
- * @namespace __types
- * @memberof Tools
- */
 export default {
     ParamError: PupulatorParamError,
     KeyError: PopulatorKeyError,
