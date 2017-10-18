@@ -1,9 +1,9 @@
 import { Is } from '@gik/tools-checker';
 import Thrower from '@gik/tools-thrower';
 import Mapper from '@gik/tools-mapper';
+import Types from './types';
 
-import { populatorTypeError as TypeErr, populatorKeyError as KeyErr } from './types';
-
+const { KeyError, KeyTypeError, ParamError } = Types;
 /**
  * Allows properties in an object to inherit values from sibling properties.
  * This specially useful when creating JSON configuration files.
@@ -27,7 +27,8 @@ import { populatorTypeError as TypeErr, populatorKeyError as KeyErr } from './ty
 export default function Populator(subject) {
 
     if (!Is.object(subject))
-        throw Thrower(`${TypeErr.message}, got '${typeof subject}'`, TypeErr.name);
+        Thrower([ParamError.message, 'subject', 'Object', typeof subject], ParamError.name);
+
 
     const replacer = (obj, replaces) => Object.keys(obj).reduce((result, key) => ({
         ...result,
@@ -39,16 +40,16 @@ export default function Populator(subject) {
                 do { // eslint-disable-line no-constant-condition
                     const match = val.match(/\$\{([^}]+)\}/);
                     if (!match) break;
-                    const repl = replaces[match[1]];
-                    const emsg = `${KeyErr.message} '${key}'`;
+                    const prop = match[1];
+                    const repl = replaces[prop];
                     // make sure the property exist
                     if (repl === undefined)
-                        throw Thrower(`${emsg} does not exist.`, KeyErr.name);
+                        Thrower([KeyError.message, key, prop], KeyError.name);
                     // only allow numbers and strings for replacements
                     if (!Is.number(repl) && !Is.string(repl)) {
-                        throw Thrower(
-                            `${emsg}. Expecting {string|number}, got '${typeof repl}'`,
-                            KeyErr.name,
+                        Thrower(
+                            [KeyTypeError.message, key, prop, typeof repl],
+                            KeyTypeError.name,
                         );
                     }
                     val = [ // eslint-disable-line no-param-reassign

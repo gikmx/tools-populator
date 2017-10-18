@@ -1,22 +1,32 @@
 
 /**
  * The provided `subject` to the Populator is not the expected type.
- * @typedef {Error} populatorTypeError
+ * @typedef {Error}
  * @memberof Tools.__types
  */
-export const populatorTypeError = {
-    name: 'populatorTypeError',
-    message: 'Expecting subject to be {Object}',
+export const PupulatorParamError = {
+    name: 'PupulatorParamError',
+    message: 'Invalid parameter «%s». Expecting {%s}, got "%s',
 };
 
 /**
  * The provided key cannot be used to populate the current property.
- * @typedef {Error} populatorKeyError
+ * @typedef {Error}
  * @memberof Tools.__types
  */
-export const populatorKeyError = {
-    name: 'populatorKeyError',
-    message: 'Invalid property',
+export const PopulatorKeyError = {
+    name: 'PopulatorKeyError',
+    message: 'The key "%s" cannot be used on «%s» because it does not exist.',
+};
+
+/**
+ * The provided key cannot be used because is not a valid type.
+ * @typedef {Error}
+ * @memberof Tools.__types
+ */
+export const PopulatorKeyTypeError = {
+    name: 'PopulatorKeyTypeError',
+    message: 'The key "%s" cannot be used on «%s». Expecting {string|number}, got "%s"',
 };
 
 /**
@@ -24,6 +34,7 @@ export const populatorKeyError = {
  * @memberof Tools
  */
 export default {
-    TypeError: populatorTypeError,
-    KeyError: populatorKeyError,
+    ParamError: PupulatorParamError,
+    KeyError: PopulatorKeyError,
+    KeyTypeError: PopulatorKeyTypeError,
 };

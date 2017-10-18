@@ -4,23 +4,24 @@ import Types from '../lib/types';
 
 Test('should throw an error when sent a non-object as subject', test =>
     test.throws(() => Populator('foo'), err =>
-        err.name === Types.TypeError.name &&
-        err.message.indexOf(Types.TypeError.message) === 0,
+        err.name === Types.ParamError.name &&
+        err.message.match(/Invalid parameter «subject»/) !== null,
     ),
 );
 
-Test('should throw when using invalid property as key', (test) => {
-    test.plan(2);
+Test('should throw when using non existent key.', (test) => {
     test.throws(() => Populator({ a: '${b}' }), err =>
         err.name === Types.KeyError.name &&
-        err.message.indexOf(Types.KeyError.message) === 0,
-    );
-    test.throws(() => Populator({ a: true, b: '${a}' }), err =>
-        err.name === Types.KeyError.name &&
-        err.message.indexOf(Types.KeyError.message) === 0,
+        err.message.match(/it does not exist/) !== null,
     );
 });
 
+Test('should throw when using invalid key.', (test) => {
+    test.throws(() => Populator({ a: true, b: '${a}' }), err =>
+        err.name === Types.KeyTypeError.name &&
+        err.message.match(/Expecting/) !== null,
+    );
+});
 
 Test('should resolve the example correctly', (test) => {
     test.plan(2);

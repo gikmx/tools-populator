@@ -1,8 +1,8 @@
-# [@gik/tools-populator](https://github.com/gikmx/tools) *0.0.1*
+# [@gik/tools-populator](https://github.com/gikmx/tools) *0.0.2*
 > Allows you to easily populate an object using its own keys
 
 ## Contributors
-* [Héctor Menéndez](mailto:hector@gik.mx) [hectormenendez.com](hectormenendez.com)
+* [Héctor Menéndez](mailto:hector@gik.mx) [http://hectormenendez.com](http://hectormenendez.com)
 
 # Usage
 
@@ -12,8 +12,9 @@
 
 -   [pupulator](#pupulator)
 -   [\_\_types](#__types)
-    -   [populatorTypeError](#populatortypeerror)
-    -   [populatorKeyError](#populatorkeyerror)
+    -   [PupulatorParamError](#pupulatorparamerror)
+    -   [PopulatorKeyError](#populatorkeyerror)
+    -   [PopulatorKeyTypeError](#populatorkeytypeerror)
 
 ## pupulator
 
@@ -41,14 +42,20 @@ Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 ## \_\_types
 
-### populatorTypeError
+### PupulatorParamError
 
 The provided `subject` to the Populator is not the expected type.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-### populatorKeyError
+### PopulatorKeyError
 
 The provided key cannot be used to populate the current property.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+### PopulatorKeyTypeError
+
+The provided key cannot be used because is not a valid type.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
