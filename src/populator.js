@@ -8,13 +8,12 @@ const { KeyError, KeyTypeError, ParamError } = Types;
  * Allows properties in an object to inherit values from sibling properties.
  * This specially useful when creating JSON configuration files.
  *
- * @name pupulator
- * @memberof Tools
+ * @module populator
  *
  * @param {Object} subject - The object you need to be populated.
- * @returns {Object}
+ * @returns {Object} - An object copy with references replaced.
  *
- * @example
+ * @example @lang js
  * const subject = {
  *     a: { b: { c: 'world' } },
  *     d: "hello ${a.b.c}${e}",
@@ -28,7 +27,6 @@ export default function Populator(subject) {
 
     if (!Is.object(subject))
         Thrower([ParamError.message, 'subject', 'Object', typeof subject], ParamError.name);
-
 
     const replacer = (obj, replaces) => Object.keys(obj).reduce((result, key) => ({
         ...result,
@@ -57,7 +55,7 @@ export default function Populator(subject) {
                         replaces[match[1]],
                         val.substr(match.index + match[0].length),
                     ].join('');
-                } while (true);
+                } while (true); // eslint-disable-line no-constant-condition
                 return val;
             }.call(null, obj[key]),
     }), {});
