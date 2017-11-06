@@ -1,4 +1,4 @@
-# [@gik/tools-populator](https://github.com/gikmx/tools) *0.0.3*
+# [@gik/tools-populator](https://github.com/gikmx/tools) *0.0.4*
 > Allows you to easily populate an object using its own keys
 
 ##### Contributors
@@ -40,10 +40,11 @@ const subject = {
     a: { b: { c: 'world' } },
     d: "hello ${a.b.c}${e}",
     e: "!!!",
+    f: ["${e}", "${a.b.c}"]
 };
 const result = Populator(subject);
 // result:
-// { a: { b: { c: 'world' } }, d: "hello world!!!", e: "!!!" };
+// { a: { b: { c: 'world' } }, d: "hello world!!!", e: "!!!", f: ["!!!", "world"] };
 ```
 
 <small>**[▲ Top](#table-of-contents)**</small>

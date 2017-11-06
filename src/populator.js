@@ -18,22 +18,28 @@ const { KeyError, KeyTypeError, ParamError } = Types;
  *     a: { b: { c: 'world' } },
  *     d: "hello ${a.b.c}${e}",
  *     e: "!!!",
+ *     f: ["${e}", "${a.b.c}"]
  * };
  * const result = Populator(subject);
  * // result:
- * // { a: { b: { c: 'world' } }, d: "hello world!!!", e: "!!!" };
+ * // { a: { b: { c: 'world' } }, d: "hello world!!!", e: "!!!", f: ["!!!", "world"] };
  */
 export default function Populator(subject) {
 
     if (!Is.object(subject))
         Thrower([ParamError.message, 'subject', 'Object', typeof subject], ParamError.name);
-
-    const replacer = (obj, replaces) => Object.keys(obj).reduce((result, key) => ({
-        ...result,
-        // if current key represents an object, be recursive, otherwise replace.
-        [key]: Is.object(obj[key]) ?
-            replacer(obj[key], replaces) :
-            function replace(val) {
+    const replacer = (obj, replaces) => Object
+        .keys(obj)
+        .reduce((result, key) => {
+            let current;
+            // if current key represents an object, be recursive, otherwise replace.
+            if (Is.object(obj[key]))
+                current = replacer(obj[key], replaces);
+            // convert to object temporarily to apply recursion and convert back.
+            else if (Is.array(obj[key])) {
+                current = obj[key].reduce((acc, val, i) => ({ ...acc, [i]: val }), {});
+                current = Object.values(replacer(current, replaces));
+            } else current = function replace(val) { // eslint-disable-line curly
                 if (!Is.string(val) || val.indexOf('${') === -1) return val;
                 do { // eslint-disable-line no-constant-condition
                     const match = val.match(/\$\{([^}]+)\}/);
@@ -57,8 +63,9 @@ export default function Populator(subject) {
                     ].join('');
                 } while (true); // eslint-disable-line no-constant-condition
                 return val;
-            }.call(null, obj[key]),
-    }), {});
+            }.call(null, obj[key]);
+            return { ...result, [key]: current };
+        }, {});
 
     return replacer(subject, Mapper(subject));
 }

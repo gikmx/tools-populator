@@ -42,11 +42,13 @@ test('should resolve the example correctly', () => {
         a: { b: { c: 'world' } },
         d: 'hello ${a.b.c}${e}',
         e: '!!!',
+        f: ['${e}', '${a.b.c}'],
     };
     expect(() => Populator(subject)).not.toThrow();
     expect(Populator(subject)).toEqual({
         a: { b: { c: 'world' } },
         d: 'hello world!!!',
         e: '!!!',
+        f: ['!!!', 'world'],
     });
 });

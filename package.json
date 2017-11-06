@@ -1,6 +1,6 @@
 {
     "name": "@gik/tools-populator",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Allows you to easily populate an object using its own keys",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/tools",
