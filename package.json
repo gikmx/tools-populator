@@ -1,9 +1,9 @@
 {
     "name": "@gik/tools-populator",
     "version": "0.0.4",
-    "description": "Allows you to easily populate an object using its own keys",
+    "description": "Allows you to populate an object in a single pass. Part of our [tools suite](https://github.com/gikmx/tools).",
     "license": "MIT",
-    "homepage": "https://github.com/gikmx/tools",
+    "homepage": "http://gik.mx",
     "contributors": [
         "Héctor Menéndez <hector@gik.mx>"
     ],

@@ -1,5 +1,5 @@
-# [@gik/tools-populator](https://github.com/gikmx/tools) *0.0.4*
-> Allows you to easily populate an object using its own keys
+# [@gik/tools-populator](http://gik.mx) *0.0.4*
+> Allows you to populate an object in a single pass. Part of our [tools suite](https://github.com/gikmx/tools).
 
 ##### Contributors
 - [Héctor Menéndez](mailto:hector@gik.mx) []()
@@ -17,6 +17,8 @@
 
 Allows properties in an object to inherit values from sibling properties.
 This specially useful when creating JSON configuration files.
+> - [Standalone version](https://github.com/gikmx/tools-streamer).
+> - [Report a Bug](https://github.com/gikmx/tools-streamer/issues).
 
 ###### Parameters
 <table>

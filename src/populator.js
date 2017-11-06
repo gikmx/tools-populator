@@ -5,10 +5,11 @@ import Types from './types';
 
 const { KeyError, KeyTypeError, ParamError } = Types;
 /**
- * Allows properties in an object to inherit values from sibling properties.
- * This specially useful when creating JSON configuration files.
- *
  * @module populator
+ * @description Allows properties in an object to inherit values from sibling properties.
+ * This specially useful when creating JSON configuration files.
+ * > - [Standalone version](https://github.com/gikmx/tools-streamer).
+ * > - [Report a Bug](https://github.com/gikmx/tools-streamer/issues).
  *
  * @param {Object} subject - The object you need to be populated.
  * @returns {Object} - An object copy with references replaced.
