@@ -1,4 +1,4 @@
-# [@gik/tools-populator](http://gik.mx) *0.0.4*
+# [@gik/tools-populator](http://gik.mx) *0.0.5*
 > Allows you to populate an object in a single pass. Part of our [tools suite](https://github.com/gikmx/tools).
 
 ##### Contributors
